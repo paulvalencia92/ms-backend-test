@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->unsignedInteger('stock');
-            $table->float('value');
+            $table->decimal('value',20);
             $table->timestamps();
         });
     }
