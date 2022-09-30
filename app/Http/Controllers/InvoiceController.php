@@ -18,7 +18,8 @@ class InvoiceController extends Controller
 
     public function index()
     {
-
+        $invoices = $this->invoiceRepository->all();
+        return response()->json($invoices, 200);
     }
 
     public function store(InvoiceRequest $request)
@@ -28,21 +29,17 @@ class InvoiceController extends Controller
         return response()->json($invoice, 201);
     }
 
-
-    public function show(Invoice $invoice)
+    public function update(InvoiceRequest $request, Invoice $invoice)
     {
-        //
-    }
-
-
-    public function update(Request $request, Invoice $invoice)
-    {
-        //
+        $invoice->fill($request->all());
+        $invoice = $this->invoiceRepository->update($invoice);
+        return response()->json($invoice, 201);
     }
 
 
     public function destroy(Invoice $invoice)
     {
-        //
+        $this->invoiceRepository->delete($invoice);
+        return response()->json('deleted success', 200);
     }
 }

@@ -27,6 +27,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/products', [ProductController::class, 'index']);
 
 
+    Route::get('/invoices', [InvoiceController::class, 'index']);
     Route::post('/invoices', [InvoiceController::class, 'store']);
+    Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
+    Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy']);
+
 
 });

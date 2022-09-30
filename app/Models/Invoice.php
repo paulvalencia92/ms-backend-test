@@ -28,7 +28,15 @@ class Invoice extends Model
         'items' => 'array',
     ];
 
-    protected $guarded = [];
+    protected $fillable = [
+        'sender_id',
+        'receiver_id',
+        'iva',
+        'iva',
+        'items',
+        'total',
+        'totalInvoice',
+    ];
 
 
     public function sender()
