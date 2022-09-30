@@ -19,7 +19,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('receiver_id')->comment('receptor');
             $table->float('iva')->default(0);
             $table->json('items');
-            $table->decimal('total');
+            $table->decimal('total',20);
+            $table->decimal('totalInvoice',20);
             $table->foreign('sender_id')->references('id')->on('users');
             $table->foreign('receiver_id')->references('id')->on('users');
             $table->timestamps();

@@ -2,61 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InvoiceRequest;
 use App\Models\Invoice;
+use App\Repositories\InvoiceRepository;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $invoiceRepository;
+
+    public function __construct(InvoiceRepository $invoiceRepository)
+    {
+        $this->invoiceRepository = $invoiceRepository;
+    }
+
     public function index()
     {
-        //
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(InvoiceRequest $request)
     {
-        //
+        $invoice = new Invoice($request->all());
+        $invoice = $this->invoiceRepository->save($invoice);
+        return response()->json($invoice, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Invoice $invoice)
     {
         //
