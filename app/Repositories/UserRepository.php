@@ -18,4 +18,11 @@ class UserRepository
         return $this->model->get();
     }
 
+
+    public function save(User $user)
+    {
+        $user->save();
+        return $user;
+    }
+
 }

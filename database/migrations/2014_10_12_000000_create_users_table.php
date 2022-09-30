@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('nit')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->enum('type', ['emisor', 'receptor']);
+            $table->enum('type', ['admin', 'emisor', 'receptor']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

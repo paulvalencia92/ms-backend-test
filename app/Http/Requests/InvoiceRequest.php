@@ -21,7 +21,7 @@ class InvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'sender_id' => ['required', Rule::exists('users', 'id')],
+            'sender_id' => [auth()->user()->type === 'admin' ? 'required' : 'nullable', Rule::exists('users', 'id')],
             'receiver_id' => ['required', Rule::exists('users', 'id')],
             'iva' => ['required', 'numeric'],
             'items' => ['required', 'array'],

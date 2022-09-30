@@ -14,6 +14,11 @@ class Invoice extends Model
         parent::boot();
         if (!app()->runningInConsole()) {
             self::saving(function ($table) {
+
+                if (auth()->user()->type !== 'admin') {
+                    $table->sender_id = auth()->id();
+                }
+
                 $consecutive = 1;
                 $invoice = Invoice::orderBy('id', 'desc')->first();
                 if ($invoice) {
